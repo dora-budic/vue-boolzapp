@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Boolzapp</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="./master.css">
   </head>
   <body>
@@ -17,7 +20,37 @@
 
       <main id="app">
         <div id="sidebar">
+          <div class="account">
+            <div class="user">
+              <a href="#"><img src="./img/avatar_io.jpg" alt="user profile picture"></a>
+              <span>Dora</span>
+            </div>
+            <ul>
+              <li><a href="#"><i class="fas fa-circle-notch"></i></a></li>
+              <li><a href="#"><i class="fas fa-comment-alt"></i></a></li>
+              <li><a href="#"><i class="fas fa-ellipsis-v"></i></a></li>
+            </ul>
+          </div>
+          <div class="notifications">
+            <div class="not-icon">
+              <i class="fas fa-bell-slash"></i>
+            </div>
+            <div class="not-text">
+              <a href="#"><span>Ricevi notifiche di nuovi messaggi</span></a><br>
+              <a href="#"><span>Attiva le notifiche desktop</span></a>
+            </div>
+          </div>
+          <div class="new-chat">
+            <i class="fas fa-search"></i>
+            <input type="text" name="new-chat" placeholder="Cerca o inizia una nuova chat">
+          </div>
+          <div class="conversations">
+            <div class="contact" v-for="(contact) in contacts">
+              <img :src="'./img/avatar' + contact.avatar + '.jpg'" :alt="contact.name + ' profile image'">
+              <span>{{contact.name}}</span>
+            </div>
 
+          </div>
         </div>
         <div id="chat">
 
@@ -25,7 +58,7 @@
       </main>
 
       <footer>
-        <div id="message-area">
+        <div id="writing-area">
 
         </div>
       </footer>
