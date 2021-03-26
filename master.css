@@ -3,3 +3,46 @@
   margin: 0;
   padding: 0;
 }
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+#chat-navigation {
+  background-color: green;
+  height: 80px;
+  width: calc(100% - 400px);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#app {
+  height: 100vh;
+  display: flex;
+}
+
+#sidebar {
+  width: 400px;
+  height: 100%;
+  background-color: orange;
+}
+
+#chat {
+  width: calc(100% - 400px);
+  height: calc(100% - 80px);
+  overflow-y: auto;
+  background-color: pink;
+}
+
+#message-area {
+  background-color: blue;
+  width: calc(100% - 400px);
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
