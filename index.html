@@ -10,15 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="./master.css">
   </head>
+
   <body>
     <div id="root">
-      <header>
-        <div id="chat-navigation">
 
-        </div>
-      </header>
-
-      <main id="app">
+      <aside>
         <div id="sidebar">
           <div class="account">
             <div class="user">
@@ -45,15 +41,49 @@
             <input type="text" name="new-chat" placeholder="Cerca o inizia una nuova chat">
           </div>
           <div class="conversations">
-            <div class="contact" v-for="(contact) in contacts">
-              <img :src="'./img/avatar' + contact.avatar + '.jpg'" :alt="contact.name + ' profile image'">
-              <span>{{contact.name}}</span>
+            <div class="contact" v-for="(contact) in contacts"
+            :class="(contact.name == 'Michele' ? 'active' : '')">
+              <img :src="'./img/avatar' + contact.avatar + '.jpg'"
+              :alt="contact.name + ' profile image'">
+              <div class="chat-text">
+                <span>{{contact.name}}</span>
+              </div>
             </div>
 
           </div>
         </div>
-        <div id="chat">
+      </aside>
 
+      <header>
+        <div id="chat-navigation">
+          <div class="chat-contact">
+            <a href="#"><img src="./img/avatar_1.jpg" alt="user profile picture"></a>
+            <div class="last-active">
+              <span>Michele</span>
+            </div>
+          </div>
+          <ul>
+            <li><a href="#"><i class="fas fa-search"></i></a></li>
+            <li><a href="#"><i class="fas fa-paperclip"></i></a></li>
+            <li><a href="#"><i class="fas fa-ellipsis-v"></i></a></li>
+          </ul>
+        </div>
+      </header>
+
+      <main id="app">
+        <div id="chat">
+          <!-- <div :class="(contacts.status == 'sent' ? 'sent' : 'received')"
+          :key="contacts.messages">
+            <span>Hai portato a spasso il cane?</span>
+          </div>
+          <div :class="(contacts.status == 'sent' ? 'sent' : 'received')"
+          :key="contacts.messages">
+            <span>Ricordati di dargli da mangiare</span>
+          </div>
+          <div :class="(contacts.status == 'sent' ? 'sent' : 'received')"
+          :key="contacts.messages">
+            <span>Tutto fatto!</span>
+          </div> -->
         </div>
       </main>
 
