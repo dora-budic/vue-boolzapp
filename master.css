@@ -131,6 +131,7 @@ ul > li > a {
   align-items: center;
   padding: 10px 16px;
   border-bottom: 1px solid #DADADA;
+  cursor: pointer;
 }
 
 #sidebar .conversations .contact.active {
@@ -171,14 +172,33 @@ ul > li > a {
   margin-top: 60px;
   overflow-y: scroll;
   background-image: url('./img/mine.jpg');
+  padding: 30px 60px;
+}
+
+#chat div.messages {
+  margin-bottom: 20px;
+}
+
+#chat div.messages:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 
 .sent {
   background-color: #D5F9BB;
+  float: right;
+  width: 280px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .received {
   background-color: #fff;
+  float: left;
+  width: 280px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 /* WRITING AREA/SENDING MESSAGES */
@@ -190,4 +210,25 @@ ul > li > a {
   bottom: 0;
   right: 0;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+#writing-area a {
+  text-decoration: none;
+  color: #707376;
+}
+
+#writing-area .write-message {
+  flex: 1 0 130px;
+  margin: 0 30px;
+}
+
+#writing-area .write-message input {
+  width: 100%;
+  outline: 0;
+  border: 0;
+  padding: 10px 5px;
+  border-radius: 5px;
 }

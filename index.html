@@ -41,8 +41,9 @@
             <input type="text" name="new-chat" placeholder="Cerca o inizia una nuova chat">
           </div>
           <div class="conversations">
-            <div class="contact" v-for="(contact) in contacts"
-            :class="(contact.name == 'Michele' ? 'active' : '')">
+            <div class="contact" v-for="(contact, i) in contacts"
+            @click="selectContact(i)"
+            :class="(currentIndex == i) ? 'active' : ''">
               <img :src="'./img/avatar' + contact.avatar + '.jpg'"
               :alt="contact.name + ' profile image'">
               <div class="chat-text">
@@ -59,7 +60,7 @@
           <div class="chat-contact">
             <a href="#"><img src="./img/avatar_1.jpg" alt="user profile picture"></a>
             <div class="last-active">
-              <span>Michele</span>
+              <span>{{contacts[currentIndex].name}}</span>
             </div>
           </div>
           <ul>
@@ -70,32 +71,33 @@
         </div>
       </header>
 
-      <main id="app">
+      <main>
         <div id="chat">
-          <!-- <div :class="(contacts.status == 'sent' ? 'sent' : 'received')"
-          :key="contacts.messages">
-            <span>Hai portato a spasso il cane?</span>
+          <div class="messages"
+          v-for="message in contacts[currentIndex].messages">
+            <div :class="(message.status == 'sent' ? 'sent' : 'received')">
+              <span>{{message.text}}</span>
+            </div>
           </div>
-          <div :class="(contacts.status == 'sent' ? 'sent' : 'received')"
-          :key="contacts.messages">
-            <span>Ricordati di dargli da mangiare</span>
-          </div>
-          <div :class="(contacts.status == 'sent' ? 'sent' : 'received')"
-          :key="contacts.messages">
-            <span>Tutto fatto!</span>
-          </div> -->
         </div>
       </main>
 
       <footer>
         <div id="writing-area">
-
+          <div class="emoticon">
+            <a href="#"><i class="far fa-smile"></i></a>
+          </div>
+          <div class="write-message">
+            <input type="text" name="message" placeholder="Scrivi un messaggio">
+          </div>
+          <div class="audio">
+            <a href="#"><i class="fas fa-microphone"></i></a>
+          </div>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="./dati.js" charset="utf-8"></script>
     <script src="./main.js" charset="utf-8"></script>
   </body>
 </html>
