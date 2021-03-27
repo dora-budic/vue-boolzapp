@@ -27,6 +27,7 @@
               <li><a href="#"><i class="fas fa-ellipsis-v"></i></a></li>
             </ul>
           </div>
+
           <div class="notifications">
             <div class="not-icon">
               <i class="fas fa-bell-slash"></i>
@@ -36,21 +37,28 @@
               <a href="#"><span>Attiva le notifiche desktop</span></a>
             </div>
           </div>
+
           <div class="new-chat">
             <i class="fas fa-search"></i>
             <input type="text" name="new-chat" placeholder="Cerca o inizia una nuova chat">
           </div>
+
           <div class="conversations">
             <div class="contact" v-for="(contact, i) in contacts"
             @click="selectContact(i)"
             :class="(currentIndex == i) ? 'active' : ''">
-              <img :src="'./img/avatar' + contact.avatar + '.jpg'"
-              :alt="contact.name + ' profile image'">
-              <div class="chat-text">
-                <span>{{contact.name}}</span>
+              <div class="contact-left">
+                <img :src="'./img/avatar' + contact.avatar + '.jpg'"
+                :alt="contact.name + ' profile image'">
+                <div class="chat-text">
+                  <span>{{contact.name}}</span>
+                  <span class="last-message">
+                    {{contact.messages[contact.messages.length - 1].text}}
+                  </span>
+                </div>
               </div>
+              <div class="date">{{messagesArray[lastMessage].date}}</div>
             </div>
-
           </div>
         </div>
       </aside>
@@ -58,9 +66,10 @@
       <header>
         <div id="chat-navigation">
           <div class="chat-contact">
-            <a href="#"><img src="./img/avatar_1.jpg" alt="user profile picture"></a>
+            <a href="#"><img :src="'./img/avatar' + contacts[currentIndex].avatar + '.jpg'" alt="user profile picture"></a>
             <div class="last-active">
               <span>{{contacts[currentIndex].name}}</span>
+              <span>Ultimo accesso oggi alle ore {{messagesArray[lastMessage].date}}</span>
             </div>
           </div>
           <ul>

@@ -92,5 +92,13 @@ var app = new Vue ({
     selectContact: function (index) {
       this.currentIndex = index;
     }
+  },
+  computed: {
+    messagesArray: function () {
+      return this.contacts[this.currentIndex].messages;
+    },
+    lastMessage: function () {
+      return this.messagesArray.length - 1;
+    }
   }
 });

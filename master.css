@@ -10,7 +10,7 @@ body {
 
 /* SIDEBAR WITH ACCOUNT AND CONVERSATIONS */
 #sidebar {
-  width: 400px;
+  width: 450px;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -39,7 +39,7 @@ body {
 }
 
 #sidebar .account .user span {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 ul {
@@ -87,7 +87,7 @@ ul > li > a {
 
 #sidebar .notifications .not-text a:first-child {
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   color: #000;
 }
 
@@ -97,7 +97,7 @@ ul > li > a {
 
 #sidebar .notifications .not-text a:last-child {
   color: #928694;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 #sidebar .new-chat {
@@ -128,7 +128,7 @@ ul > li > a {
 
 #sidebar .conversations .contact {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   padding: 10px 16px;
   border-bottom: 1px solid #DADADA;
   cursor: pointer;
@@ -138,17 +138,40 @@ ul > li > a {
   background-color: #EAEAEA;
 }
 
-#sidebar .conversations .contact img {
+#sidebar .conversations .contact-left {
+  display: flex;
+}
+
+#sidebar .conversations .contact-left img {
   width: 50px;
   border-radius: 100%;
   margin-right: 15px;
+}
+
+#sidebar .conversations .chat-text span:first-child {
+  font-size: 14px;
+}
+
+#sidebar .conversations .contact-left .last-message {
+  color: #928694;
+  font-size: 12px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 180px;
+}
+
+#sidebar .conversations .date {
+  font-size: 10px;
+  color: #928694;
 }
 
 /* HEADER */
 #chat-navigation {
   background-color: #EDEDED;
   height: 60px;
-  width: calc(100vw - 400px);
+  width: calc(100vw - 450px);
   position: fixed;
   top: 0;
   right: 0;
@@ -164,11 +187,25 @@ ul > li > a {
   align-items: center;
 }
 
+#chat-navigation .last-active {
+  display: flex;
+  flex-direction: column;
+}
+
+#chat-navigation .last-active span:first-child {
+  font-size: 14px;
+}
+
+#chat-navigation .last-active span:last-child {
+  color: #928694;
+  font-size: 12px;
+}
+
 /* MAIN - CHAT AREA */
 #chat {
-  width: calc(100vw - 400px);
+  width: calc(100vw - 450px);
   height: calc(100vh - 120px);
-  margin-left: 400px;
+  margin-left: 450px;
   margin-top: 60px;
   overflow-y: scroll;
   background-image: url('./img/mine.jpg');
@@ -177,6 +214,7 @@ ul > li > a {
 
 #chat div.messages {
   margin-bottom: 20px;
+  font-size: 14px;
 }
 
 #chat div.messages:after {
@@ -204,7 +242,7 @@ ul > li > a {
 /* WRITING AREA/SENDING MESSAGES */
 #writing-area {
   background-color: #F6F6F6;
-  width: calc(100vw - 400px);
+  width: calc(100vw - 450px);
   height: 60px;
   position: fixed;
   bottom: 0;
