@@ -2,6 +2,7 @@ var app = new Vue ({
   el: "#root",
   data: {
     currentIndex: 0,
+    userMessage: '',
     contacts: [
 			{
 				name: 'Michele',
@@ -91,6 +92,25 @@ var app = new Vue ({
   methods: {
     selectContact: function (index) {
       this.currentIndex = index;
+    },
+    sendMessage: function () {
+      let obj = {
+        date: dayjs(new Date()).format('DD/MM/YYYY H:m:s'),
+        text: this.userMessage,
+        status: 'sent'
+      }
+      this.messagesArray.push(obj);
+      this.userMessage = '';
+      
+      let currentContact = this.messagesArray;
+      setTimeout(function () {
+        let obj = {
+          date: dayjs(new Date()).format('DD/MM/YYYY H:m:s'),
+          text: 'Ok',
+          status: 'received'
+        }
+        currentContact.push(obj);
+      },1000);
     }
   },
   computed: {
