@@ -4,6 +4,7 @@ var app = new Vue ({
     currentIndex: 0,
     userMessage: '',
     searchInput:  '',
+    messageIndex: null,
     contacts: [
 			{
 				name: 'Michele',
@@ -90,6 +91,14 @@ var app = new Vue ({
 			},
 		]
   },
+  computed: {
+    messagesArray: function () {
+      return this.contacts[this.currentIndex].messages;
+    },
+    lastMessage: function () {
+      return this.messagesArray.length - 1;
+    }
+  },
   methods: {
     selectContact: function (contact) {
       this.currentIndex = this.contacts.indexOf(contact);
@@ -116,7 +125,7 @@ var app = new Vue ({
           status: 'received'
         }
         array.push(obj);
-      },2000);
+      },1000);
     },
     search: function (text) {
       let contactsFiltered;
@@ -127,14 +136,17 @@ var app = new Vue ({
         item.name.toLowerCase().startsWith(text.toLowerCase()));
         return contactsFiltered;
       }
+    },
+    showOptions: function (index) {
+      if (this.messageIndex == null) {
+        this.messageIndex = index;
+      } else {
+        this.messageIndex = null;
+      }
+    },
+    deleteMessage: function (index) {
+      this.messagesArray.splice(index,1);
+      this.messageIndex = null;
     }
   },
-  computed: {
-    messagesArray: function () {
-      return this.contacts[this.currentIndex].messages;
-    },
-    lastMessage: function () {
-      return this.messagesArray.length - 1;
-    }
-  }
 });

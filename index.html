@@ -76,7 +76,7 @@
             </a>
             <div class="last-active">
               <span>{{contacts[currentIndex].name}}</span>
-              <span>Ultimo accesso {{getTime(messagesArray[lastMessage].date)}}</span>
+              <span>Ultimo accesso oggi alle {{getTime(messagesArray[lastMessage].date)}}</span>
             </div>
           </div>
           <ul>
@@ -90,10 +90,18 @@
       <main>
         <div id="chat">
           <div class="messages"
-          v-for="message in contacts[currentIndex].messages">
+          v-for="(message,i) in messagesArray">
             <div class="message-box" :class="message.status">
               <span>{{message.text}}</span>
               <span class="time">{{getTime(message.date)}}</span>
+              <i class="fas fa-chevron-down"
+                :class="(messageIndex == i) ? 'show' : 'hide'"
+                @click="showOptions(i)"></i>
+              <div class="message-options"
+              :class="(messageIndex == i) ? 'show' : 'hide'">
+                <div>Message Info</div>
+                <div @click="deleteMessage(messageIndex)">Delete message</div>
+              </div>
             </div>
           </div>
         </div>
