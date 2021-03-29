@@ -93,24 +93,28 @@ var app = new Vue ({
     selectContact: function (index) {
       this.currentIndex = index;
     },
-    sendMessage: function () {
+    getTime: function (date) {
+      let dateTime = date.split(" ");
+      let time = dateTime[1].split(":");
+      return `${time[0]}:${time[1]}`;
+    },
+    sendMessage: function (array) {
       let obj = {
-        date: dayjs(new Date()).format('DD/MM/YYYY H:m:s'),
+        date: dayjs(new Date()).format('DD/MM/YYYY H:mm:ss'),
         text: this.userMessage,
         status: 'sent'
       }
-      this.messagesArray.push(obj);
+      array.push(obj);
       this.userMessage = '';
-      
-      let currentContact = this.messagesArray;
+
       setTimeout(function () {
         let obj = {
-          date: dayjs(new Date()).format('DD/MM/YYYY H:m:s'),
+          date: dayjs(new Date()).format('DD/MM/YYYY H:mm:ss'),
           text: 'Ok',
           status: 'received'
         }
-        currentContact.push(obj);
-      },1000);
+        array.push(obj);
+      },2000);
     }
   },
   computed: {

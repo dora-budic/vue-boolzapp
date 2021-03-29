@@ -57,7 +57,7 @@
                   </span>
                 </div>
               </div>
-              <div class="date">{{messagesArray[lastMessage].date}}</div>
+              <div class="date">{{getTime(contact.messages[contact.messages.length - 1].date)}}</div>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
             <a href="#"><img :src="'./img/avatar' + contacts[currentIndex].avatar + '.jpg'" alt="user profile picture"></a>
             <div class="last-active">
               <span>{{contacts[currentIndex].name}}</span>
-              <span>Ultimo accesso {{messagesArray[lastMessage].date}}</span>
+              <span>Ultimo accesso {{getTime(messagesArray[lastMessage].date)}}</span>
             </div>
           </div>
           <ul>
@@ -84,9 +84,9 @@
         <div id="chat">
           <div class="messages"
           v-for="message in contacts[currentIndex].messages">
-            <div class="message-box" :class="(message.status == 'sent' ? 'sent' : 'received')">
+            <div class="message-box" :class="message.status">
               <span>{{message.text}}</span>
-              <span class="time">{{message.date}}</span>
+              <span class="time">{{getTime(message.date)}}</span>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@
           </div>
           <div class="write-message">
             <input v-model="userMessage"
-            @keyup.enter = "sendMessage"
+            @keyup.enter = "sendMessage(messagesArray)"
             type="text" name="message" placeholder="Scrivi un messaggio">
           </div>
           <div class="audio">
