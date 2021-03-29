@@ -3,6 +3,7 @@ var app = new Vue ({
   data: {
     currentIndex: 0,
     userMessage: '',
+    searchInput:  '',
     contacts: [
 			{
 				name: 'Michele',
@@ -90,8 +91,9 @@ var app = new Vue ({
 		]
   },
   methods: {
-    selectContact: function (index) {
-      this.currentIndex = index;
+    selectContact: function (contact) {
+      this.currentIndex = this.contacts.indexOf(contact);
+      this.searchInput = '';
     },
     getTime: function (date) {
       let dateTime = date.split(" ");
@@ -115,6 +117,16 @@ var app = new Vue ({
         }
         array.push(obj);
       },2000);
+    },
+    search: function (text) {
+      let contactsFiltered;
+      if (text == '') {
+        return this.contacts;
+      } else {
+        contactsFiltered = this.contacts.filter((item) =>
+        item.name.toLowerCase().startsWith(text.toLowerCase()));
+        return contactsFiltered;
+      }
     }
   },
   computed: {

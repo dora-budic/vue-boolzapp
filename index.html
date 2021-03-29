@@ -40,16 +40,18 @@
 
           <div class="new-chat">
             <i class="fas fa-search"></i>
-            <input type="text" name="new-chat" placeholder="Cerca o inizia una nuova chat">
+            <input v-model="searchInput"
+            @keyup="search(searchInput)"
+            type="text" name="new-chat" placeholder="Cerca o inizia una nuova chat">
           </div>
 
           <div class="conversations">
-            <div class="contact" v-for="(contact, i) in contacts"
-            @click="selectContact(i)"
-            :class="(currentIndex == i) ? 'active' : ''">
+            <div class="contact" v-for="(contact, i) in search(searchInput)"
+            @click="selectContact(contact)"
+            :class="(currentIndex == i && search(searchInput).length != 1) ? 'active' : ''">
               <div class="contact-left">
-                <img :src="'./img/avatar' + contact.avatar + '.jpg'"
-                :alt="contact.name + ' profile image'">
+                <img :src="`./img/avatar${contact.avatar}.jpg`"
+                :alt="`${contact.name} profile image`">
                 <div class="chat-text">
                   <span>{{contact.name}}</span>
                   <span class="last-message">
@@ -57,7 +59,9 @@
                   </span>
                 </div>
               </div>
-              <div class="date">{{getTime(contact.messages[contact.messages.length - 1].date)}}</div>
+              <div class="date">
+                {{getTime(contact.messages[contact.messages.length - 1].date)}}
+              </div>
             </div>
           </div>
         </div>
@@ -66,7 +70,10 @@
       <header>
         <div id="chat-navigation">
           <div class="chat-contact">
-            <a href="#"><img :src="'./img/avatar' + contacts[currentIndex].avatar + '.jpg'" alt="user profile picture"></a>
+            <a href="#">
+              <img :src="`./img/avatar${contacts[currentIndex].avatar}.jpg`"
+              :alt="`${contacts[currentIndex].name} profile image`">
+            </a>
             <div class="last-active">
               <span>{{contacts[currentIndex].name}}</span>
               <span>Ultimo accesso {{getTime(messagesArray[lastMessage].date)}}</span>
