@@ -134,7 +134,7 @@ ul > li > a {
   cursor: pointer;
 }
 
-#sidebar .conversations .contact.active {
+#sidebar .conversations .contact.active, #sidebar .conversations .contact:hover {
   background-color: #EAEAEA;
 }
 
