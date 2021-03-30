@@ -146,8 +146,17 @@ var app = new Vue ({
       }
     },
     deleteMessage: function (index) {
-      this.messagesArray.splice(index,1);
-      this.messageIndex = null;
+      if (this.messagesArray.length == 1) {
+        this.messagesArray[index].text = '';
+        this.messagesArray[index].date = dayjs().format('DD/MM/YYYY H:mm:ss');
+        if (this.currentIndex == this.contacts.length - 1) {
+          this.currentIndex = 0;
+        } else {
+          this.currentIndex++;
+        }
+      } else {
+        this.messagesArray.splice(index,1);
+      }
     },
   },
 });
