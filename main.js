@@ -148,6 +148,6 @@ var app = new Vue ({
     deleteMessage: function (index) {
       this.messagesArray.splice(index,1);
       this.messageIndex = null;
-    }
+    },
   },
 });

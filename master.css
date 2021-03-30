@@ -8,13 +8,30 @@ body {
   font-family: 'Fira Sans', sans-serif;
 }
 
+.background-green {
+  height: 120px;
+  background-color: #32A699;
+}
+
+.background-grey {
+  height: calc(100vh - 120px);
+  background-color: #D9DCD5;
+}
+
+.container {
+  width: 85vw;
+  height: 95vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
 /* SIDEBAR WITH ACCOUNT AND CONVERSATIONS */
 #sidebar {
   width: 450px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -124,6 +141,7 @@ ul > li > a {
 #sidebar .conversations {
   height: calc(100% - 200px);
   overflow-y: scroll;
+  background-color: #fff;
 }
 
 #sidebar .conversations .contact {
@@ -171,11 +189,10 @@ ul > li > a {
 #chat-navigation {
   background-color: #EDEDED;
   height: 60px;
-  width: calc(100vw - 450px);
-  position: fixed;
+  width: calc(100% - 450px);
+  position: absolute;
   top: 0;
   right: 0;
-  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -202,11 +219,12 @@ ul > li > a {
 }
 
 /* MAIN - CHAT AREA */
+main {
+  width: 100%;
+  padding: 60px 0;
+}
 #chat {
-  width: calc(100vw - 450px);
-  height: calc(100vh - 120px);
-  margin-left: 450px;
-  margin-top: 60px;
+  height: 100%;
   overflow-y: scroll;
   background-image: url('./img/mine.jpg');
   padding: 30px 60px 50px;
@@ -296,12 +314,11 @@ ul > li > a {
 /* WRITING AREA/SENDING MESSAGES */
 #writing-area {
   background-color: #F6F6F6;
-  width: calc(100vw - 450px);
+  width: calc(100% - 450px);
   height: 60px;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 1;
   display: flex;
   align-items: center;
   padding: 10px 20px;
