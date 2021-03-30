@@ -109,22 +109,23 @@ var app = new Vue ({
       let time = dateTime[1].split(":");
       return `${time[0]}:${time[1]}`;
     },
-    sendMessage: function (array) {
+    sendMessage: function () {
+      const index = this.currentIndex;
       let obj = {
-        date: dayjs(new Date()).format('DD/MM/YYYY H:mm:ss'),
+        date: dayjs().format('DD/MM/YYYY H:mm:ss'),
         text: this.userMessage,
         status: 'sent'
       }
-      array.push(obj);
+      this.contacts[index].messages.push(obj);
       this.userMessage = '';
 
-      setTimeout(function () {
+      setTimeout(() => {
         let obj = {
-          date: dayjs(new Date()).format('DD/MM/YYYY H:mm:ss'),
+          date: dayjs().format('DD/MM/YYYY H:mm:ss'),
           text: 'Ok',
           status: 'received'
         }
-        array.push(obj);
+        this.contacts[index].messages.push(obj);
       },1000);
     },
     search: function (text) {
