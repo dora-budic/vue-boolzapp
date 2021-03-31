@@ -17,7 +17,7 @@
       <div class="background-grey"></div>
 
       <div class="container">
-        <aside>
+        <aside :class="(mobileChat) ? 'hide-cont' : ''">
           <div id="sidebar">
             <div class="account">
               <div class="user">
@@ -73,10 +73,12 @@
           </div>
         </aside>
 
-        <div class="container-right">
+        <div class="container-right" :class="(mobileChat) ? 'show-chat' : ''">
           <header>
             <div id="chat-navigation">
               <div class="chat-contact">
+                <a href="#" class="back"
+                @click="goBack"><i class="fas fa-arrow-left"></i></a>
                 <a href="#">
                   <img :src="`./img/avatar${contacts[currentIndex].avatar}.jpg`"
                   :alt="`${contacts[currentIndex].name} profile image`">

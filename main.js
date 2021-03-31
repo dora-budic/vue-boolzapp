@@ -5,6 +5,7 @@ var app = new Vue ({
     userMessage: '',
     searchInput:  '',
     messageIndex: null,
+    mobileChat: false,
     contacts: [
 			{
 				name: 'Michele',
@@ -102,7 +103,11 @@ var app = new Vue ({
   methods: {
     selectContact: function (contact) {
       this.currentIndex = this.contacts.indexOf(contact);
+      this.mobileChat = true;
       this.searchInput = '';
+    },
+    goBack: function () {
+      this.mobileChat = false;
     },
     getTime: function (date) {
       let dateTime = date.split(" ");
