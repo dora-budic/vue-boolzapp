@@ -135,6 +135,7 @@ var app = new Vue ({
       } else {
         contactsFiltered = this.contacts.filter((item) =>
         item.name.toLowerCase().startsWith(text.toLowerCase()));
+        console.log(contactsFiltered);
         return contactsFiltered;
       }
     },
@@ -147,8 +148,8 @@ var app = new Vue ({
     },
     deleteMessage: function (index) {
       if (this.messagesArray.length == 1) {
-        this.messagesArray[index].text = '';
-        this.messagesArray[index].date = dayjs().format('DD/MM/YYYY H:mm:ss');
+        this.messagesArray.splice(index,1);
+        this.contacts[this.currentIndex].lastActive = dayjs().format('DD/MM/YYYY H:mm:ss');
         if (this.currentIndex == this.contacts.length - 1) {
           this.currentIndex = 0;
         } else {
@@ -158,5 +159,10 @@ var app = new Vue ({
         this.messagesArray.splice(index,1);
       }
     },
+    showContact: function (index) {
+      return this.currentIndex == index ||
+      this.contacts[index].messages.length != 0 ||
+      this.searchInput != ''
+    }
   },
 });

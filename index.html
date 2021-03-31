@@ -51,18 +51,21 @@
             <div class="conversations">
               <div class="contact" v-for="(contact, i) in search(searchInput)"
               @click="selectContact(contact)"
-              :class="(currentIndex == i && search(searchInput).length != 1) ? 'active' : ''">
+              :class="(currentIndex == i && search(searchInput).length != 1) ? 'active' : ''"
+              v-if="showContact(i)">
                 <div class="contact-left">
                   <img :src="`./img/avatar${contact.avatar}.jpg`"
                   :alt="`${contact.name} profile image`">
                   <div class="chat-text">
                     <span>{{contact.name}}</span>
-                    <span class="last-message">
+                    <span class="last-message"
+                    v-if="contact.messages.length != 0">
                       {{contact.messages[contact.messages.length - 1].text}}
                     </span>
                   </div>
                 </div>
-                <div class="date">
+                <div class="date"
+                v-if="contact.messages.length != 0">
                   {{getTime(contact.messages[contact.messages.length - 1].date)}}
                 </div>
               </div>
@@ -80,7 +83,8 @@
                 </a>
                 <div class="last-active">
                   <span>{{contacts[currentIndex].name}}</span>
-                  <span>Ultimo accesso oggi alle {{getTime(messagesArray[lastMessage].date)}}</span>
+                  <span v-if="messagesArray.length != 0">Ultimo accesso oggi alle {{getTime(messagesArray[lastMessage].date)}}</span>
+                  <span v-else>Ultimo accesso oggi alle {{getTime(contacts[currentIndex].lastActive)}}</span>
                 </div>
               </div>
               <ul>
@@ -93,24 +97,23 @@
 
           <main>
             <div id="chat">
-              <div class="messages"
-              v-for="(message,i) in messagesArray">
-                <div class="message-box" :class="message.status"
-                @click="showOptions(i)"
-                v-if="message.text != ''">
-                  <span>{{message.text}}</span>
-                  <span class="time">{{getTime(message.date)}}</span>
-                  <i class="fas fa-chevron-down"
-                    :class="(messageIndex == i) ? 'show' : 'hide'">
-                  </i>
-                  <div class="message-options"
+              <div class="message-box" :class="message.status"
+              v-for="(message,i) in messagesArray"
+              @click="showOptions(i)"
+              v-if="messagesArray.length != 0">
+                <span>{{message.text}}</span>
+                <span class="time">{{getTime(message.date)}}</span>
+                <i class="fas fa-chevron-down"
                   :class="(messageIndex == i) ? 'show' : 'hide'">
-                    <div>Message Info</div>
-                    <div @click="deleteMessage(messageIndex)">Delete message</div>
-                  </div>
+                </i>
+                <div class="message-options"
+                :class="(messageIndex == i) ? 'show' : 'hide'">
+                  <div>Message Info</div>
+                  <div @click="deleteMessage(messageIndex)">Delete message</div>
                 </div>
               </div>
             </div>
+
           </main>
 
           <footer>

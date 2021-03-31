@@ -230,27 +230,18 @@ main {
   overflow-y: scroll;
   background-image: url('./img/mine.jpg');
   padding: 30px 60px 50px;
-}
-
-#chat div.messages {
-  margin-bottom: 20px;
-  font-size: 14px;
-}
-
-#chat div.messages:after {
-  content: '';
-  display: table;
-  clear: both;
+  display: flex;
+  flex-direction: column;
 }
 
 .sent {
   background-color: #D5F9BB;
-  float: right;
+  align-self: flex-end;
 }
 
 .received {
   background-color: #fff;
-  float: left;
+  align-self: flex-start;
 }
 
 #chat .message-box {
@@ -260,6 +251,8 @@ main {
   max-width: 280px;
   border-radius: 5px;
   position: relative;
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 
 #chat .message-box span:first-child {
