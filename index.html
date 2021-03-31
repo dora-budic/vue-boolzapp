@@ -17,6 +17,7 @@
       <div class="background-grey"></div>
 
       <div class="container">
+        <!-- SIDEBAR HEADER -->
         <aside :class="(mobileChat) ? 'hide-cont' : ''">
           <div id="sidebar">
             <div class="account">
@@ -31,6 +32,7 @@
               </ul>
             </div>
 
+            <!-- SIDEBAR NOTIFICATIONS -->
             <div class="notifications">
               <div class="not-icon">
                 <i class="fas fa-bell-slash"></i>
@@ -41,6 +43,7 @@
               </div>
             </div>
 
+            <!-- SIDEBAR SEARCH INPUT -->
             <div class="new-chat">
               <i class="fas fa-search"></i>
               <input v-model="searchInput"
@@ -48,11 +51,13 @@
               type="text" name="new-chat" placeholder="Cerca o inizia una nuova chat">
             </div>
 
+            <!-- SIDEBAR CONTACTS -->
             <div class="conversations">
               <div class="contact" v-for="(contact, i) in search(searchInput)"
               @click="selectContact(contact)"
               :class="(currentIndex == i && search(searchInput).length != 1) ? 'active' : ''"
               v-if="showContact(i)">
+
                 <div class="contact-left">
                   <img :src="`./img/avatar${contact.avatar}.jpg`"
                   :alt="`${contact.name} profile image`">
@@ -64,6 +69,7 @@
                     </span>
                   </div>
                 </div>
+
                 <div class="date"
                 v-if="contact.messages.length != 0">
                   {{getTime(contact.messages[contact.messages.length - 1].date)}}
@@ -73,7 +79,9 @@
           </div>
         </aside>
 
+        <!-- CHAT SECTION -->
         <div class="container-right" :class="(mobileChat) ? 'show-chat' : ''">
+          <!-- CHAT HEADER - CONTACT -->
           <header>
             <div id="chat-navigation">
               <div class="chat-contact">
@@ -97,6 +105,7 @@
             </div>
           </header>
 
+          <!-- SECTION WITH MESSAGES -->
           <main>
             <div id="chat">
               <div class="message-box" :class="message.status"
@@ -115,9 +124,9 @@
                 </div>
               </div>
             </div>
-
           </main>
 
+          <!-- INPUT FOR WRITING MESSAGES -->
           <footer>
             <div id="writing-area">
               <div class="emoticon">
@@ -135,7 +144,7 @@
           </footer>
         </div>
       </div>
-
+      
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>

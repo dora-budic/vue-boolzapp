@@ -93,27 +93,35 @@ var app = new Vue ({
 		]
   },
   computed: {
+    // Prendo l'array di messagi del contact attivo
     messagesArray: function () {
       return this.contacts[this.currentIndex].messages;
     },
+    // Prendo la posizione dell'ultimo messagio del contact attivo
     lastMessage: function () {
       return this.messagesArray.length - 1;
     }
   },
   methods: {
+    // Prendo la posizione del contact cliccato,
+    // cambio la condizione per visualizzare chat e nascondere contatti (versione mobile),
+    // pulisco il valore di input(search)
     selectContact: function (contact) {
       this.currentIndex = this.contacts.indexOf(contact);
       this.mobileChat = true;
       this.searchInput = '';
     },
+    // cambio la condizione per visualizzare contatti e nascondere chat,
     goBack: function () {
       this.mobileChat = false;
     },
+    // Dalla data prendo solo l'ora e minuti
     getTime: function (date) {
       let dateTime = date.split(" ");
       let time = dateTime[1].split(":");
       return `${time[0]}:${time[1]}`;
     },
+    // Metto il messaggio inviato/ricevuto nell'array
     sendMessage: function () {
       const index = this.currentIndex;
       let obj = {
@@ -125,14 +133,20 @@ var app = new Vue ({
       this.userMessage = '';
 
       setTimeout(() => {
+        const newMessages = [
+          'Ciao','Ok', 'Grazie', 'Prego', 'Bene, e tu?',
+          'Non posso, ho un impegno', 'Ottimo'];
+        let max = newMessages.length - 1;
+        let randomIndex = Math.floor(Math.random() * (max + 1));
         let obj = {
           date: dayjs().format('DD/MM/YYYY H:mm:ss'),
-          text: 'Ok',
+          text: newMessages[randomIndex],
           status: 'received'
         }
         this.contacts[index].messages.push(obj);
       },1000);
     },
+    // Cerco se i nomi dei contatti iniziano con le lettere inserite nell'input search
     search: function (text) {
       let contactsFiltered;
       if (text == '') {
@@ -140,10 +154,10 @@ var app = new Vue ({
       } else {
         contactsFiltered = this.contacts.filter((item) =>
         item.name.toLowerCase().startsWith(text.toLowerCase()));
-        console.log(contactsFiltered);
         return contactsFiltered;
       }
     },
+    // Al click sul messaggio faccio vedere le opzioni corispondenti
     showOptions: function (index) {
       if (this.messageIndex == null) {
         this.messageIndex = index;
@@ -151,6 +165,9 @@ var app = new Vue ({
         this.messageIndex = null;
       }
     },
+    // Cancello il messagio cliccato,
+    // se l'array messagio vuoto > inserisco la data come l'ultimo accesso,
+    // dimostro il prossimo contatto
     deleteMessage: function (index) {
       if (this.messagesArray.length == 1) {
         this.messagesArray.splice(index,1);
@@ -164,6 +181,7 @@ var app = new Vue ({
         this.messagesArray.splice(index,1);
       }
     },
+    // Condizioni per visualizzare il contatto nella lista
     showContact: function (index) {
       return this.currentIndex == index ||
       this.contacts[index].messages.length != 0 ||
