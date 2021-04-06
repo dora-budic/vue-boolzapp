@@ -111,7 +111,7 @@
                 <span>{{message.text}}</span>
                 <span class="time">{{getTime(message.date)}}</span>
                 <i class="fas fa-chevron-down"
-                  @click.stop="messageIndex = i">
+                  @click.stop="(messageIndex == i) ? messageIndex = null : messageIndex = i">
                 </i>
                 <div class="message-options"
                 :class="(messageIndex == i) ? 'show' : 'hide'">
