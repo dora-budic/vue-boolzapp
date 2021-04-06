@@ -315,6 +315,7 @@ main {
   display: flex;
   align-items: center;
   padding: 10px 20px;
+  position: relative;
 }
 
 #writing-area a {
@@ -333,6 +334,33 @@ main {
   border: 0;
   padding: 10px 5px;
   border-radius: 5px;
+}
+
+#writing-area .emoticons {
+  position: absolute;
+  left: 20px;
+  bottom: 45px;
+  background-color: #fff;
+  height: 148px;
+  width: 250px;
+  padding: 5px;
+  overflow-y: auto;
+}
+
+#writing-area .emoticons .chategory {
+  display: flex;
+  border-bottom: 1px solid #707376;
+  margin-bottom: 5px;
+}
+
+#writing-area .emoticons .chategory div {
+  padding: 5px;
+  color: #707376;
+  cursor: pointer;
+}
+
+#writing-area .emoticons span {
+  cursor: context-menu;
 }
 
 @media all and (max-width: 767px) {
@@ -354,7 +382,6 @@ main {
     color: #919191;
     margin-right: 10px;
   }
-
 }
 
 @media all and (min-width: 768px) {

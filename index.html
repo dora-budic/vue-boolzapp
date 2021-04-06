@@ -126,15 +126,42 @@
           <footer>
             <div id="writing-area">
               <div class="emoticon">
-                <a href="#"><i class="far fa-smile"></i></a>
+                <a href="#"><i class="far fa-smile"
+                  @click="showEmoticon"
+                ></i></a>
               </div>
               <div class="write-message">
                 <input v-model="userMessage"
                 @keyup.enter = "sendMessage"
+                ref="inputFocus"
                 type="text" name="message" placeholder="Scrivi un messaggio">
               </div>
               <div class="audio">
                 <a href="#"><i class="fas fa-microphone"></i></a>
+              </div>
+
+              <!-- EMOTICONS -->
+              <div class="emoticons" v-if="showEmoji">
+                <div class="chategory">
+                  <div class="smile-icon"
+                  @click="smile = true, animal = false">
+                    <i class="far fa-smile"></i>
+                  </div>
+                  <div class="animal-icon"
+                  @click="animal = true, smile = false">
+                    <i class="fas fa-dog"></i>
+                  </div>
+                </div>
+                <div class="smiles"
+                :class="(smile) ? 'show' : 'hide'">
+                  <span v-for="emoticon in emojiSmiles"
+                  @click="addToMess(emoticon)">{{emoticon}}</span>
+                </div>
+                <div class="animals"
+                :class="(animal) ? 'show' : 'hide'">
+                  <span v-for="emoticon in emojiAnimals"
+                  @click="addToMess(emoticon)">{{emoticon}}</span>
+                </div>
               </div>
             </div>
           </footer>
@@ -143,6 +170,7 @@
 
     </div>
 
+    <script src="https://rawgit.com/theraot/emoji/master/emoji.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="./main.js" charset="utf-8"></script>

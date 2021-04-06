@@ -6,6 +6,12 @@ var app = new Vue ({
     searchInput:  '',
     messageIndex: null,
     mobileChat: false,
+    emoji: emoji,
+    emojiSmiles: [],
+    emojiAnimals: [],
+    showEmoji: false,
+    smile: true,
+    animal: false,
     contacts: [
 			{
 				name: 'Michele',
@@ -92,6 +98,19 @@ var app = new Vue ({
 			},
 		]
   },
+  created() {
+    // Creo gli emoticons
+    for (var i = 0; i < 296; i++) {
+      if (i != 17 && i != 47) {
+        this.emojiSmiles.push(this.emoji[i]);
+      }
+    }
+    for (var i = 698; i < 800; i++) {
+      if (i != 17 && i != 47) {
+        this.emojiAnimals.push(this.emoji[i]);
+      }
+    }
+  },
   computed: {
     // Prendo l'array di messagi del contact attivo
     messagesArray: function () {
@@ -100,7 +119,7 @@ var app = new Vue ({
     // Prendo la posizione dell'ultimo messagio del contact attivo
     lastMessage: function () {
       return this.messagesArray.length - 1;
-    }
+    },
   },
   methods: {
     // Prendo la posizione del contact cliccato,
@@ -167,6 +186,24 @@ var app = new Vue ({
       return (this.currentIndex == index ||
       this.contacts[index].messages.length != 0 || this.searchInput != '') &&
       this.contacts[index].name.toLowerCase().includes(this.searchInput.toLowerCase())
+    },
+    // Faccio comparire div con emoticons
+    showEmoticon: function () {
+      if (this.showEmoji == false) {
+        this.showEmoji = true;
+      } else {
+        this.showEmoji = false;
+        this.smile = true;
+        this.animal = false;
+      }
+    },
+    // Inserisco emoticon scelto nell'input del messago da mandare
+    addToMess: function (emoji) {
+      this.userMessage = emoji;
+      this.showEmoji = false;
+      this.smile = true;
+      this.animal = false;
+      this.$refs.inputFocus.focus();
     }
   },
 });
