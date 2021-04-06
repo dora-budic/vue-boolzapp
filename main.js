@@ -135,7 +135,7 @@ var app = new Vue ({
       setTimeout(() => {
         const newMessages = [
           'Ciao','Ok', 'Grazie', 'Prego', 'Bene, e tu?',
-          'Non posso, ho un impegno', 'Ottimo'];
+          'Non posso, ho un impegno.', 'Ottimo!'];
         let max = newMessages.length - 1;
         let randomIndex = Math.floor(Math.random() * (max + 1));
         let obj = {
@@ -145,25 +145,6 @@ var app = new Vue ({
         }
         this.contacts[index].messages.push(obj);
       },1000);
-    },
-    // Cerco se i nomi dei contatti iniziano con le lettere inserite nell'input search
-    search: function (text) {
-      let contactsFiltered;
-      if (text == '') {
-        return this.contacts;
-      } else {
-        contactsFiltered = this.contacts.filter((item) =>
-        item.name.toLowerCase().startsWith(text.toLowerCase()));
-        return contactsFiltered;
-      }
-    },
-    // Al click sul messaggio faccio vedere le opzioni corispondenti
-    showOptions: function (index) {
-      if (this.messageIndex == null) {
-        this.messageIndex = index;
-      } else {
-        this.messageIndex = null;
-      }
     },
     // Cancello il messagio cliccato,
     // se l'array messagio vuoto > inserisco la data come l'ultimo accesso,
@@ -183,9 +164,9 @@ var app = new Vue ({
     },
     // Condizioni per visualizzare il contatto nella lista
     showContact: function (index) {
-      return this.currentIndex == index ||
-      this.contacts[index].messages.length != 0 ||
-      this.searchInput != ''
+      return (this.currentIndex == index ||
+      this.contacts[index].messages.length != 0 || this.searchInput != '') &&
+      this.contacts[index].name.toLowerCase().includes(this.searchInput.toLowerCase())
     }
   },
 });

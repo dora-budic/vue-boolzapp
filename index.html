@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <div id="root">
+    <div id="root" @click="messageIndex = null">
       <div class="background-green"></div>
       <div class="background-grey"></div>
 
@@ -47,17 +47,15 @@
             <div class="new-chat">
               <i class="fas fa-search"></i>
               <input v-model="searchInput"
-              @keyup="search(searchInput)"
               type="text" name="new-chat" placeholder="Cerca o inizia una nuova chat">
             </div>
 
             <!-- SIDEBAR CONTACTS -->
             <div class="conversations">
-              <div class="contact" v-for="(contact, i) in search(searchInput)"
+              <div class="contact" v-for="(contact, i) in contacts"
               @click="selectContact(contact)"
-              :class="(currentIndex == i && search(searchInput).length != 1) ? 'active' : ''"
+              :class="(currentIndex == i) ? 'active' : ''"
               v-if="showContact(i)">
-
                 <div class="contact-left">
                   <img :src="`./img/avatar${contact.avatar}.jpg`"
                   :alt="`${contact.name} profile image`">
@@ -109,13 +107,11 @@
           <main>
             <div id="chat">
               <div class="message-box" :class="message.status"
-              v-for="(message,i) in messagesArray"
-              @click="showOptions(i)"
-              v-if="messagesArray.length != 0">
+              v-for="(message,i) in messagesArray">
                 <span>{{message.text}}</span>
                 <span class="time">{{getTime(message.date)}}</span>
                 <i class="fas fa-chevron-down"
-                  :class="(messageIndex == i) ? 'show' : 'hide'">
+                  @click.stop="messageIndex = i">
                 </i>
                 <div class="message-options"
                 :class="(messageIndex == i) ? 'show' : 'hide'">
@@ -144,7 +140,7 @@
           </footer>
         </div>
       </div>
-      
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
