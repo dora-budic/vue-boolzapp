@@ -343,23 +343,30 @@ main {
   background-color: #fff;
   height: 148px;
   width: 250px;
-  padding: 5px;
   overflow-y: auto;
 }
 
 #writing-area .emoticons .chategory {
   display: flex;
-  border-bottom: 1px solid #707376;
-  margin-bottom: 5px;
+  /* border-bottom: 1px solid #707376; */
+  background-color: #F0F0F0;
 }
 
 #writing-area .emoticons .chategory div {
-  padding: 5px;
+  padding: 5px 10px;
   color: #707376;
   cursor: pointer;
 }
 
-#writing-area .emoticons span {
+#writing-area .emoticons .chategory div.border {
+  border-bottom: 2px solid #009688;
+}
+
+#writing-area .all-emoticons {
+  padding: 5px;
+}
+
+#writing-area .all-emoticons span {
   cursor: context-menu;
 }
 

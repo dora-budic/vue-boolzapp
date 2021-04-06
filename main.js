@@ -199,7 +199,7 @@ var app = new Vue ({
     },
     // Inserisco emoticon scelto nell'input del messago da mandare
     addToMess: function (emoji) {
-      this.userMessage = emoji;
+      this.userMessage += emoji;
       this.showEmoji = false;
       this.smile = true;
       this.animal = false;

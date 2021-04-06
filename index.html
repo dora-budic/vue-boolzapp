@@ -144,23 +144,27 @@
               <div class="emoticons" v-if="showEmoji">
                 <div class="chategory">
                   <div class="smile-icon"
+                  :class="(smile == true) ? 'border' : ''"
                   @click="smile = true, animal = false">
                     <i class="far fa-smile"></i>
                   </div>
                   <div class="animal-icon"
+                  :class="(animal == true) ? 'border' : ''"
                   @click="animal = true, smile = false">
                     <i class="fas fa-dog"></i>
                   </div>
                 </div>
-                <div class="smiles"
-                :class="(smile) ? 'show' : 'hide'">
+                <div class="all-emoticons">
+                  <div class="smiles"
+                  :class="(smile) ? 'show' : 'hide'">
                   <span v-for="emoticon in emojiSmiles"
                   @click="addToMess(emoticon)">{{emoticon}}</span>
-                </div>
-                <div class="animals"
-                :class="(animal) ? 'show' : 'hide'">
+                  </div>
+                  <div class="animals"
+                  :class="(animal) ? 'show' : 'hide'">
                   <span v-for="emoticon in emojiAnimals"
                   @click="addToMess(emoticon)">{{emoticon}}</span>
+                  </div>
                 </div>
               </div>
             </div>
