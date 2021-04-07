@@ -127,12 +127,18 @@
             <div id="writing-area">
               <div class="emoticon">
                 <a href="#"><i class="far fa-smile"
-                  @click="showEmoticon"
+                  @click="showEmoji = true"
+                  :class="(showEmoji == true) ? 'hide' : 'show'"
+                ></i></a>
+                <a href="#"><i class="fas fa-keyboard"
+                  @click="closeEmoticon"
+                  :class="(showEmoji == true) ? 'show' : 'hide'"
                 ></i></a>
               </div>
               <div class="write-message">
                 <input v-model="userMessage"
                 @keyup.enter = "sendMessage"
+                @keyup = "showEmoji = false, smile = true, animal = false"
                 ref="inputFocus"
                 type="text" name="message" placeholder="Scrivi un messaggio">
               </div>

@@ -150,6 +150,9 @@ var app = new Vue ({
       }
       this.contacts[index].messages.push(obj);
       this.userMessage = '';
+      this.showEmoji = false;
+      this.smile = true;
+      this.animal = false;
 
       setTimeout(() => {
         const newMessages = [
@@ -187,22 +190,15 @@ var app = new Vue ({
       this.contacts[index].messages.length != 0 || this.searchInput != '') &&
       this.contacts[index].name.toLowerCase().includes(this.searchInput.toLowerCase())
     },
-    // Faccio comparire div con emoticons
-    showEmoticon: function () {
-      if (this.showEmoji == false) {
-        this.showEmoji = true;
-      } else {
-        this.showEmoji = false;
-        this.smile = true;
-        this.animal = false;
-      }
+    // Chiudo la finestra con emoticon
+    closeEmoticon: function () {
+      this.showEmoji = false;
+      this.smile = true;
+      this.animal = false;
     },
     // Inserisco emoticon scelto nell'input del messago da mandare
     addToMess: function (emoji) {
       this.userMessage += emoji;
-      this.showEmoji = false;
-      this.smile = true;
-      this.animal = false;
       this.$refs.inputFocus.focus();
     }
   },
